@@ -5,6 +5,8 @@ Sometimes, just throwing an error isn't that helpful. Sometimes, handling an err
 
 If there are more errors you would like to see, create an issue, or fork and contribute. Share the love!
 
+![node-error-classes](https://raw.githubusercontent.com/RIAEvangelist/node-error-classes/master/screenshot.png)
+
 ## Errors Currently supported
 
 #### Required Parameter
