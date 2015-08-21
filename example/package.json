@@ -1,0 +1,25 @@
+{
+  "name": "node-error-classes",
+  "version": "0.0.1",
+  "description": "Custom error classes for node.js ",
+  "main": "Errors.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RIAEvangelist/node-error-classes"
+  },
+  "keywords": [
+    "node",
+    "error",
+    "throw",
+    "custom"
+  ],
+  "author": "Brandon Nozaki Miller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RIAEvangelist/node-error-classes/issues"
+  },
+  "homepage": "https://github.com/RIAEvangelist/node-error-classes"
+}
