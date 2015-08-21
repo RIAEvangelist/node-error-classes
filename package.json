@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/RIAEvangelist/node-error-classes/issues"
   },
-  "homepage": "https://github.com/RIAEvangelist/node-error-classes"
+  "homepage": "https://github.com/RIAEvangelist/node-error-classes",
+  "dependencies": {
+    "colors": "^1.1.2"
+  }
 }
