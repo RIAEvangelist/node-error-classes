@@ -38,8 +38,10 @@ example :
 
         //do sockety stuff
     }
-    
-## Invalid Parameter
+  
+---
+
+#### Invalid Parameter
 This error helps when you have a value that must be in a specific range or descreet value.
 
 |argument|type|description|
