@@ -1,6 +1,6 @@
 {
   "name": "node-error-classes",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Custom error classes for node.js ",
   "main": "Errors.js",
   "scripts": {
@@ -24,5 +24,8 @@
   "homepage": "https://github.com/RIAEvangelist/node-error-classes",
   "dependencies": {
     "colors": "^1.1.2"
+  },
+  "directories": {
+    "example": "example"
   }
 }
