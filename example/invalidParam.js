@@ -1,33 +1,33 @@
-var Errors=require('../Errors.js');
+'use strict';
 
-var bigNum=multiplyNumbers(3,200);
+const Errors=require(`${__dirname}/../Errors.js`);
+
+console.log(multiplyNumbers(6,5));
 
 function multiplyNumbers(numberOne,numberTwo){
+    let err;
     numberOne=Number(numberOne);
     numberTwo=Number(numberTwo);
 
-    if(!numberOne){//catches NaN
-        throw new Errors.InvalidParameter(
+    if(numberOne>5){
+        err=new Errors.InvalidParameter;
+        err.setMessage(
             'numberOne',
-            'number'
+            'a value less than 5',
+            numberOne
         );
-    }
-    if(!numberTwo || numberTwo>10 || numberTwo<1){
-        throw new Errors.InvalidParameter(
-            'numberTwo',
-            'number',
-            1,10,
-            1
-        );
-    }
-    if(numberTwo && numberTwo % 1){ //detects float (non-whole number like 1.25)
-        throw new Errors.InvalidParameter(
-            'numberTwo',
-            'number',
-            1,10,
-            1
-        );
+        throw err;
     }
 
-    return a*b;
+    if(numberTwo>10){
+        err=new Errors.InvalidParameter;
+        err.setMessage(
+            'numberTwo',
+            'a value less than 10',
+            numberOne
+        );
+        throw err;
+    }
+
+    return numberOne*numberTwo;
 }

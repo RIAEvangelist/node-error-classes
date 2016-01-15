@@ -1,15 +1,29 @@
-var Errors=require('../Errors.js');
+'use strict';
 
-console.log(Errors);
+const Errors=require(`${__dirname}/../Errors.js`);
 
-init();
+console.log(multiplyNumbers());
 
-function init(someSocket){
-    if(!someSocket){
-        throw new Errors.RequiredParameter('someSocket','socket');
+function multiplyNumbers(numberOne,numberTwo){
+    let err;
+    numberOne=Number(numberOne);
+    numberTwo=Number(numberTwo);
+
+    if(!numberOne){
+        err=new Errors.RequiredParameter;
+        err.setMessage(
+            'numberOne'
+        );
+        throw err;
     }
 
-    mySocket=someSocket;
+    if(!numberTwo){
+        err=new Errors.RequiredParameter;
+        err.setMessage(
+            'numberTwo'
+        );
+        throw err;
+    }
 
-    //do sockety stuff
+    return numberOne*numberTwo;
 }
