@@ -10,10 +10,10 @@ function multiplyNumbers(numberOne,numberTwo){
     numberTwo=Number(numberTwo);
 
     if(numberOne>5){
-        err=new Errors.InvalidParameter;
+        err=new Errors.Type;
         err.setMessage(
             'numberOne',
-            'a value less than 5',
+            'String',
             numberOne
         );
         throw err;
@@ -23,8 +23,8 @@ function multiplyNumbers(numberOne,numberTwo){
         err=new Errors.InvalidParameter;
         err.setMessage(
             'numberTwo',
-            'a value less than 10',
-            numberTwo
+            'String',
+            numberOne
         );
         throw err;
     }
