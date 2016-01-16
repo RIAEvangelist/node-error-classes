@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jasmine",
     "cover": "istanbul cover -x **/spec/** -dir ./spec/coverage jasmine",
-    "coverup": "cat ./spec/coverage/lcov.info | codacy-coverage",
+    "coverup": ". ../.codacy/.node-error-classes&& cat ./spec/coverage/lcov.info | codacy-coverage",
     "docs": "jsdoc2md -h&& jsdoc2md -l javascript -g none -m none *.js lib/*.js > README.md"
   },
   "repository": {
