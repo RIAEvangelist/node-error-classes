@@ -3,14 +3,35 @@ Easy to read custom and extensible error classes for node.js that extend the nat
 
 Sometimes, just throwing an error isn't that helpful. Sometimes, handling an error elegantly preventing a crash just isn't quite good enough. During team development there are times when you want to throw explicit errors to both help developers understand whats going on, as well as enforce some strict rules. That is what this module is for.
 
-## Errors Currently supported
+## Errors.*
+-----------
+  - [new InvalidParameter()](#newinvalidparameter)
+  - [InvalidParameter.setMessage()](#invalidparametersetmessageparameternameanyexpectedanygotanyfromvalueany)
+  - [new RequiredParameter()](#newrequiredparameter)
+  - [RequiredParameter.setMessage()](#requiredparametersetmessageparameternameanyfromvalueany)
+  - [new Type()](#newtype)
+  - [Type.setMessage()](#typesetmessageparameternameanytypestringvalueanyfromvalueany)
 
-#### Required Parameter
-This error is useful when you have a required parameter for a function that you can not default if not present. **It does not validate the type, that is only there to help the developer who caused the error.**
+## new InvalidParameter()
 
-Documentation coming soon, see examples dir
+  Error Class InvalidParameter
 
-#### Invalid Parameter
-This error helps when a parameter is not valid but is of the right type.
+## InvalidParameter.setMessage(parameterName:Any, expected:Any, got:Any, [fromValue]:Any)
 
-Documentation coming soon, see examples dir
+  sets the error message
+
+## new RequiredParameter()
+
+  Error Class InvalidParameter
+
+## RequiredParameter.setMessage(parameterName:Any, fromValue:Any)
+
+  sets the error message
+
+## new Type()
+
+  Error Class InvalidParameter
+
+## Type.setMessage(parameterName:Any, type:String, value:Any, fromValue:Any)
+
+  sets the error message
