@@ -1,10 +1,16 @@
-<a name="module_Errors"></a>
-## Errors
+<a name="module_node-error-classes"></a>
+## node-error-classes
+<a name="Errors"></a>
+## Errors : <code>object</code>
 # Custom Node Error Classes
+
+` npm install node-error-classes `
+
  Easy to read custom and extensible error classes for node.js that extend the native error classes.
 
  Sometimes, just throwing an error isn't that helpful. Sometimes, handling an error elegantly preventing a crash just isn't quite good enough. During team development there are times when you want to throw explicit errors to both help developers understand whats going on, as well as enforce some strict rules. That is what this module is for.
 
+**Kind**: global namespace  
 **Example**  
 ```javascript
 'use strict';
@@ -12,23 +18,21 @@
 Errors=require('node-error-classes');
 ```
 
-* [Errors](#module_Errors)
-    * [.InvalidParameter](#module_Errors.InvalidParameter) ⇐ <code>Error</code>
-        * [.setMessage(parameterName, expected, got, [fromValue])](#module_Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
-    * [.RequiredParameter](#module_Errors.RequiredParameter) ⇐ <code>Error</code>
-        * [.setMessage(parameterName, [fromValue])](#module_Errors.RequiredParameter.setMessage) ⇒ <code>String</code>
-    * [.Type](#module_Errors.Type) ⇐ <code>TypeError</code>
-        * [.setMessage(parameterName, type, value, fromValue)](#module_Errors.Type.setMessage) ⇒ <code>String</code>
+* [Errors](#Errors) : <code>object</code>
+    * [.InvalidParameter](#Errors.InvalidParameter) ⇐ <code>Error</code>
+        * [.setMessage(parameterName, expected, got, [fromValue])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
+    * [.RequiredParameter](#Errors.RequiredParameter) ⇐ <code>Error</code>
+        * [.setMessage(parameterName, [fromValue])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>
+    * [.Type](#Errors.Type) ⇐ <code>TypeError</code>
+        * [.setMessage(parameterName, type, value, fromValue)](#Errors.Type.setMessage) ⇒ <code>String</code>
 
-<a name="module_Errors.InvalidParameter"></a>
+<a name="Errors.InvalidParameter"></a>
 ### Errors.InvalidParameter ⇐ <code>Error</code>
-node-error-classes InvalidParameter
-
-**Kind**: static class of <code>[Errors](#module_Errors)</code>  
+**Kind**: static class of <code>[Errors](#Errors)</code>  
 **Extends:** <code>Error</code>  
-<a name="module_Errors.InvalidParameter.setMessage"></a>
+<a name="Errors.InvalidParameter.setMessage"></a>
 #### InvalidParameter.setMessage(parameterName, expected, got, [fromValue]) ⇒ <code>String</code>
-**Kind**: static method of <code>[InvalidParameter](#module_Errors.InvalidParameter)</code>  
+**Kind**: static method of <code>[InvalidParameter](#Errors.InvalidParameter)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
 | Param | Type | Description |
@@ -53,15 +57,13 @@ if(test.b<1){
     throw err;
 }
 ```
-<a name="module_Errors.RequiredParameter"></a>
+<a name="Errors.RequiredParameter"></a>
 ### Errors.RequiredParameter ⇐ <code>Error</code>
-node-error-classes RequiredParameter
-
-**Kind**: static class of <code>[Errors](#module_Errors)</code>  
+**Kind**: static class of <code>[Errors](#Errors)</code>  
 **Extends:** <code>Error</code>  
-<a name="module_Errors.RequiredParameter.setMessage"></a>
+<a name="Errors.RequiredParameter.setMessage"></a>
 #### RequiredParameter.setMessage(parameterName, [fromValue]) ⇒ <code>String</code>
-**Kind**: static method of <code>[RequiredParameter](#module_Errors.RequiredParameter)</code>  
+**Kind**: static method of <code>[RequiredParameter](#Errors.RequiredParameter)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
 | Param | Type | Description |
@@ -82,15 +84,13 @@ if(!test.c){
        throw err;
 }
 ```
-<a name="module_Errors.Type"></a>
+<a name="Errors.Type"></a>
 ### Errors.Type ⇐ <code>TypeError</code>
-node-error-classes Type Error
-
-**Kind**: static class of <code>[Errors](#module_Errors)</code>  
+**Kind**: static class of <code>[Errors](#Errors)</code>  
 **Extends:** <code>TypeError</code>  
-<a name="module_Errors.Type.setMessage"></a>
+<a name="Errors.Type.setMessage"></a>
 #### Type.setMessage(parameterName, type, value, fromValue) ⇒ <code>String</code>
-**Kind**: static method of <code>[Type](#module_Errors.Type)</code>  
+**Kind**: static method of <code>[Type](#Errors.Type)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
 | Param | Type | Description |
