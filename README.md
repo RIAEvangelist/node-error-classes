@@ -152,7 +152,7 @@ Error for when an expected socket is not available
 | Param | Type | Description |
 | --- | --- | --- |
 | socketPath | <code>Any</code> | name of parameter |
-| [fromValue] | <code>Any</code> | optional value where the parameter came from like an object or array |
+| [fromValue] | <code>Any</code> | optional value with information on the socket or constructor |
 
 **Example**  
 ```javascript
