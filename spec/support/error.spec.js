@@ -1,6 +1,7 @@
 'use strict';
 
 const Errors=require('../../Errors.js');
+const ipc=require('node-ipc');
 
 describe(
     'All errors should be thrown appropriately',
@@ -21,6 +22,11 @@ function describeErrorsTests(){
     it(
         'should throw Type Error',
         type
+    );
+
+    it(
+        'should throw SocketUnavailable Error',
+        badSocket
     );
 }
 
@@ -121,4 +127,36 @@ function type(done){
     expect(error.name).toBe('TypeError');
 
     done();
+}
+
+function badSocket(done){
+    let err=null;
+    let error={};
+    ipc.config.id   = 'hello';
+    ipc.config.maxRetries = 0;
+    ipc.config.silent=true;
+
+    ipc.connectTo(
+        'world',
+        function(){
+            ipc.of.world.on(
+                'destroy',
+                function(data){
+                    err=new Errors.SocketUnavailable;
+                    err.setMessage(
+                        ipc.of.world.path
+                    );
+
+                    try{
+                        throw err;
+                    }catch(err){
+                        error=err;
+                    }
+
+                    expect(error.name).toBe('SocketUnavailable');
+                    done();
+                }
+            );
+        }
+    );
 }

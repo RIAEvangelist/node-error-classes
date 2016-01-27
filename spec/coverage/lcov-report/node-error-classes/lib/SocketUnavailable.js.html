@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for node-error-classes/lib/Type.js</title>
+    <title>Code coverage report for node-error-classes/lib/SocketUnavailable.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,18 +16,18 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">node-error-classes/lib/</a> Type.js
+      <a href="../../index.html">all files</a> / <a href="index.html">node-error-classes/lib/</a> SocketUnavailable.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>5/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>5/5</span>
       </div>
     </div>
   </div>
@@ -101,7 +101,23 @@
 56
 57
 58
-59</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,9 +168,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,59 +196,75 @@
 const util = require('util');
 &nbsp;
 /**
+ * Error for when an expected socket is not available
  *
- * Used for normalizing the message of a type error
- *
-* @extends TypeError
-* @class Errors.Type
+ * @extends Error
+ * @class Errors.SocketUnavailable
  * */
-class Type extends TypeError {
+class SocketUnavailable extends Error {
     /**
      * @example
-     *
-     * let test={a:1,b:0};
-     *
-     * if(typeof test.b!=='object'){
-     *     err=new Errors.Type;
-     *     err.setMessage(
-     *         'b',
-     *         'Object',
-     *         test.b,
-     *         test
-     *     );
-     *     throw err;
-     * }
+&nbsp;
+        const ipc=require('node-ipc');
+        const Errors=require('node-error-classes');
+        ipc.config.id   = 'hello';
+        ipc.config.maxRetries = 3;
+        ipc.config.silent=true;
+&nbsp;
+        ipc.connectTo(
+            'world',
+            function(){
+                ipc.of.world.on(
+                    'destroy',
+                    function(data){
+                        const err=new Errors.SocketUnavailable;
+                        err.setMessage(
+                            ipc.of.world.path,
+                            ipc.of.world
+                        );
+                        throw err;
+                    }
+                );
+            }
+        );
+&nbsp;
      *
      * @example
      *
      * ```sh
      *
-     * git/node-error-classes/example/typeError.js:19
-        throw err;
-        ^
+        git/node-error-classes/example/socketUnavailable.js:19
+                throw err;
+                ^
 &nbsp;
-        TypeError: 'numberOne' Expects String but got number : 6
+        SocketUnavailable: Socket of '/tmp/app.world' Unavailable
 &nbsp;
-        at Type (/home/bmiller/git/node-error-classes/lib/Type.js:12:1)
-        at multiplyNumbers (/home/bmiller/git/node-error-classes/example/typeError.js:13:13)
+        at SocketUnavailable (/home/bmiller/git/node-error-classes/lib/SocketUnavailable.js:11:1)
+        at Object.&lt;anonymous&gt; (/home/bmiller/git/node-error-classes/example/socketUnavailable.js:14:27)
+        at Object.pub (/home/bmiller/git/node-error-classes/node_modules/node-ipc/node_modules/event-pubsub/event-pubsub.js:69:19)
+        at Object.trigger (/home/bmiller/git/node-error-classes/node_modules/node-ipc/node_modules/event-pubsub/event-pubsub.js:111:21)
+        at Socket.connectionClosed (/home/bmiller/git/node-error-classes/node_modules/node-ipc/dao/client.js:157:24)
+        at emitOne (events.js:77:13)
+        at Socket.emit (events.js:169:7)
+        at Pipe._onclose (net.js:469:12)
 &nbsp;
+     *
      * ```
-     * 
-     * @method Errors.Type.setMessage
-     * @param  {Any} parameterName name of parameter
-     * @param  {String}   type       Type String
-     * @param  {Any}   value         value that caused error
-     * @param  {Any}   fromValue     optional value where the parameter came from like an object or array
+     *
+     * @method Errors.SocketUnavailable.setMessage
+     * @param  {Any} socketPath name of parameter
+     * @param  {Any} [fromValue]     optional value with information on the socket or constructor
      * @returns {String}    compiled error message
      */
-    setMessage(parameterName, type, value, fromValue){
-        this.message=`${util.inspect(parameterName,{depth:5,colors:true})} Expects ${type} but got ${typeof value} : ${util.inspect(value,{depth:5,colors:true})}
-        ${(fromValue)?util.inspect(fromValue,{depth:5,colors:true}):''}`;
+    setMessage(socketPath,fromValue){
+        this.name='SocketUnavailable';
+        this.message=`Socket of ${util.inspect(socketPath,{depth:5, colors:true})} Unavailable
+        ${(fromValue)?<span class="branch-0 cbranch-no" title="branch not covered" >util.inspect(fromValue,{depth:5,colors:true}):</span>''}`;
         return this.message;
     }
 }
 &nbsp;
-module.exports = Type;
+module.exports = SocketUnavailable;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
