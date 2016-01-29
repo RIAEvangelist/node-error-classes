@@ -1,6 +1,6 @@
 {
   "name": "node-error-classes",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Custom error classes for node.js ",
   "main": "Errors.js",
   "scripts": {
