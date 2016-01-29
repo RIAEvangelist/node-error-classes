@@ -1,6 +1,6 @@
 <a name="Errors"></a>
 ## Errors : <code>object</code>
-# Custom Node Error Classes
+# Custom Node and Browser Error Classes
 
 ` npm install node-error-classes `
 

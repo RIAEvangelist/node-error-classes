@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * # Custom Node Error Classes
+ * # Custom Node and Browser Error Classes
  *
  * ` npm install node-error-classes `
  *
