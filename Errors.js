@@ -19,10 +19,10 @@
  * @namespace Errors
  */
 
-const RequiredParameter=require(`${__dirname}/lib/RequiredParameter.js`);
-const InvalidParameter=require(`${__dirname}/lib/InvalidParameter.js`);
-const Type=require(`${__dirname}/lib/Type.js`);
-const SocketUnavailable=require(`${__dirname}/lib/SocketUnavailable.js`);
+const RequiredParameter=require(`./lib/RequiredParameter.js`);
+const InvalidParameter=require(`./lib/InvalidParameter.js`);
+const Type=require(`./lib/Type.js`);
+const SocketUnavailable=require(`./lib/SocketUnavailable.js`);
 
 exports.RequiredParameter=RequiredParameter;
 exports.InvalidParameter=InvalidParameter;

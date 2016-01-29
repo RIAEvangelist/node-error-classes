@@ -1,0 +1,105 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.3
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/home/bmiller/git/node-error-classes',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/bmiller/.npm/node-error-classes/1.0.2/package.tgz not in flight; packing
+9 verbose tar pack [ '/home/bmiller/.npm/node-error-classes/1.0.2/package.tgz',
+9 verbose tar pack   '/home/bmiller/git/node-error-classes' ]
+10 verbose tarball /home/bmiller/.npm/node-error-classes/1.0.2/package.tgz
+11 verbose folder /home/bmiller/git/node-error-classes
+12 info prepublish node-error-classes@1.0.2
+13 verbose addLocalTarball adding from inside cache /home/bmiller/.npm/node-error-classes/1.0.2/package.tgz
+14 silly cache afterAdd node-error-classes@1.0.2
+15 verbose afterAdd /home/bmiller/.npm/node-error-classes/1.0.2/package/package.json not in flight; writing
+16 verbose afterAdd /home/bmiller/.npm/node-error-classes/1.0.2/package/package.json written
+17 silly publish { name: 'node-error-classes',
+17 silly publish   version: '1.0.2',
+17 silly publish   description: 'Custom error classes for node.js ',
+17 silly publish   main: 'Errors.js',
+17 silly publish   scripts:
+17 silly publish    { test: 'jasmine',
+17 silly publish      cover: 'istanbul cover -x **/spec/** -dir ./spec/coverage jasmine',
+17 silly publish      coverup: '. ../.codacy/.node-error-classes&& cat ./spec/coverage/lcov.info | codacy-coverage',
+17 silly publish      docs: 'jsdoc2md -h&& jsdoc2md -l javascript -g none -m none *.js lib/*.js > README.md' },
+17 silly publish   repository:
+17 silly publish    { type: 'git',
+17 silly publish      url: 'git+https://github.com/RIAEvangelist/node-error-classes.git' },
+17 silly publish   keywords: [ 'node', 'error', 'throw', 'custom' ],
+17 silly publish   author: { name: 'Brandon Nozaki Miller' },
+17 silly publish   license: 'ISC',
+17 silly publish   bugs: { url: 'https://github.com/RIAEvangelist/node-error-classes/issues' },
+17 silly publish   homepage: 'https://github.com/RIAEvangelist/node-error-classes',
+17 silly publish   dependencies: {},
+17 silly publish   directories: { example: 'example' },
+17 silly publish   devDependencies:
+17 silly publish    { 'codacy-coverage': '^1.1.3',
+17 silly publish      istanbul: '^0.4.2',
+17 silly publish      jasmine: '^2.4.1',
+17 silly publish      'jsdoc-to-markdown': '^1.3.3',
+17 silly publish      'node-http-server': '^4.5.2',
+17 silly publish      'node-ipc': '*' },
+17 silly publish   readme: '<a name="Errors"></a>\n## Errors : <code>object</code>\n# Custom Node Error Classes\n\n` npm install node-error-classes `\n\n Easy to read custom and extensible error classes for node.js that extend the native error classes.\n\n Sometimes, just throwing an error isn\'t that helpful. Sometimes, handling an error elegantly preventing a crash just isn\'t quite good enough. During team development there are times when you want to throw explicit errors to both help developers understand whats going on, as well as enforce some strict rules. That is what this module is for.\n\n**Kind**: global namespace  \n**Example**  \n```javascript\n\'use strict\';\n\nErrors=require(\'node-error-classes\');\n```\n\n* [Errors](#Errors) : <code>object</code>\n    * [.InvalidParameter](#Errors.InvalidParameter) ⇐ <code>Error</code>\n        * [new InvalidParameter()](#new_Errors.InvalidParameter_new)\n        * [.setMessage(parameterName, expected, got, [fromValue])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>\n    * [.RequiredParameter](#Errors.RequiredParameter) ⇐ <code>Error</code>\n        * [new RequiredParameter()](#new_Errors.RequiredParameter_new)\n        * [.setMessage(parameterName, [fromValue])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>\n    * [.SocketUnavailable](#Errors.SocketUnavailable) ⇐ <code>Error</code>\n        * [new SocketUnavailable()](#new_Errors.SocketUnavailable_new)\n        * [.setMessage(socketPath, [fromValue])](#Errors.SocketUnavailable.setMessage) ⇒ <code>String</code>\n    * [.Type](#Errors.Type) ⇐ <code>TypeError</code>\n        * [new Type()](#new_Errors.Type_new)\n        * [.setMessage(parameterName, type, value, fromValue)](#Errors.Type.setMessage) ⇒ <code>String</code>\n\n<a name="Errors.InvalidParameter"></a>\n### Errors.InvalidParameter ⇐ <code>Error</code>\n**Kind**: static class of <code>[Errors](#Errors)</code>  \n**Extends:** <code>Error</code>  \n\n* [.InvalidParameter](#Errors.InvalidParameter) ⇐ <code>Error</code>\n    * [new InvalidParameter()](#new_Errors.InvalidParameter_new)\n    * [.setMessage(parameterName, expected, got, [fromValue])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>\n\n<a name="new_Errors.InvalidParameter_new"></a>\n#### new InvalidParameter()\nError for invalid parameters\n\n<a name="Errors.InvalidParameter.setMessage"></a>\n#### InvalidParameter.setMessage(parameterName, expected, got, [fromValue]) ⇒ <code>String</code>\n**Kind**: static method of <code>[InvalidParameter](#Errors.InvalidParameter)</code>  \n**Returns**: <code>String</code> - compiled error message  \n\n| Param | Type | Description |\n| --- | --- | --- |\n| parameterName | <code>Any</code> | name of parameter |\n| expected | <code>Any</code> | what it expected |\n| got | <code>Any</code> | what it got |\n| [fromValue] | <code>Any</code> | optional value where the parameter came from like an object or array |\n\n**Example**  \n```javascript\nlet test={a:1,b:0};\n\nif(test.b<1){\n    err=new Errors.InvalidParameter;\n    err.setMessage(\n        \'b\',\n        \'a value greater than 0\',\n        test.b,\n        test\n    );\n    throw err;\n}\n```\n**Example**  \n```sh\n\ngit/node-error-classes/example/invalidParam.js:19\n        throw err;\n        ^\n\n        InvalidParameter: \'numberOne\' Expects \'a value less than 5\' but got 6\n\n        at InvalidParameter (/home/bmiller/git/node-error-classes/lib/InvalidParameter.js:11:1)\n        at multiplyNumbers (/home/bmiller/git/node-error-classes/example/invalidParam.js:13:13)\n\n```\n<a name="Errors.RequiredParameter"></a>\n### Errors.RequiredParameter ⇐ <code>Error</code>\n**Kind**: static class of <code>[Errors](#Errors)</code>  \n**Extends:** <code>Error</code>  \n\n* [.RequiredParameter](#Errors.RequiredParameter) ⇐ <code>Error</code>\n    * [new RequiredParameter()](#new_Errors.RequiredParameter_new)\n    * [.setMessage(parameterName, [fromValue])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>\n\n<a name="new_Errors.RequiredParameter_new"></a>\n#### new RequiredParameter()\nerror for required params that are not set or passed\n\n<a name="Errors.RequiredParameter.setMessage"></a>\n#### RequiredParameter.setMessage(parameterName, [fromValue]) ⇒ <code>String</code>\n**Kind**: static method of <code>[RequiredParameter](#Errors.RequiredParameter)</code>  \n**Returns**: <code>String</code> - compiled error message  \n\n| Param | Type | Description |\n| --- | --- | --- |\n| parameterName | <code>Any</code> | name of parameter |\n| [fromValue] | <code>Any</code> | optional value where the parameter came from like an object or array |\n\n**Example**  \n```javascript\nlet test={a:1,b:0};\n\nif(!test.c){\n    err=new Errors.RequiredParameter;\n    err.setMessage(\n        \'c\',\n        test\n    );\n    throw err;\n}\n```\n**Example**  \n```sh\n\ngit/node-error-classes/example/requiredParam.js:17\n        throw err;\n        ^\n\n        RequiredParameter: Expects \'numberOne\' to be defined\n\n        at RequiredParameter (/home/bmiller/git/node-error-classes/lib/RequiredParameter.js:12:1)\n        at multiplyNumbers (/home/bmiller/git/node-error-classes/example/requiredParam.js:13:13)\n```\n<a name="Errors.SocketUnavailable"></a>\n### Errors.SocketUnavailable ⇐ <code>Error</code>\n**Kind**: static class of <code>[Errors](#Errors)</code>  \n**Extends:** <code>Error</code>  \n\n* [.SocketUnavailable](#Errors.SocketUnavailable) ⇐ <code>Error</code>\n    * [new SocketUnavailable()](#new_Errors.SocketUnavailable_new)\n    * [.setMessage(socketPath, [fromValue])](#Errors.SocketUnavailable.setMessage) ⇒ <code>String</code>\n\n<a name="new_Errors.SocketUnavailable_new"></a>\n#### new SocketUnavailable()\nError for when an expected socket is not available\n\n<a name="Errors.SocketUnavailable.setMessage"></a>\n#### SocketUnavailable.setMessage(socketPath, [fromValue]) ⇒ <code>String</code>\n**Kind**: static method of <code>[SocketUnavailable](#Errors.SocketUnavailable)</code>  \n**Returns**: <code>String</code> - compiled error message  \n\n| Param | Type | Description |\n| --- | --- | --- |\n| socketPath | <code>Any</code> | name of parameter |\n| [fromValue] | <code>Any</code> | optional value with information on the socket or constructor |\n\n**Example**  \n```javascript\nconst ipc=require(\'node-ipc\');\n        const Errors=require(\'node-error-classes\');\n        ipc.config.id   = \'hello\';\n        ipc.config.maxRetries = 3;\n        ipc.config.silent=true;\n\n        ipc.connectTo(\n            \'world\',\n            function(){\n                ipc.of.world.on(\n                    \'destroy\',\n                    function(data){\n                        const err=new Errors.SocketUnavailable;\n                        err.setMessage(\n                            ipc.of.world.path,\n                            ipc.of.world\n                        );\n                        throw err;\n                    }\n                );\n            }\n        );\n```\n**Example**  \n```sh\n\n        git/node-error-classes/example/socketUnavailable.js:19\n                throw err;\n                ^\n\n        SocketUnavailable: Socket of \'/tmp/app.world\' Unavailable\n\n        at SocketUnavailable (/home/bmiller/git/node-error-classes/lib/SocketUnavailable.js:11:1)\n        at Object.<anonymous> (/home/bmiller/git/node-error-classes/example/socketUnavailable.js:14:27)\n        at Object.pub (/home/bmiller/git/node-error-classes/node_modules/node-ipc/node_modules/event-pubsub/event-pubsub.js:69:19)\n        at Object.trigger (/home/bmiller/git/node-error-classes/node_modules/node-ipc/node_modules/event-pubsub/event-pubsub.js:111:21)\n        at Socket.connectionClosed (/home/bmiller/git/node-error-classes/node_modules/node-ipc/dao/client.js:157:24)\n        at emitOne (events.js:77:13)\n        at Socket.emit (events.js:169:7)\n        at Pipe._onclose (net.js:469:12)\n\n```\n<a name="Errors.Type"></a>\n### Errors.Type ⇐ <code>TypeError</code>\n**Kind**: static class of <code>[Errors](#Errors)</code>  \n**Extends:** <code>TypeError</code>  \n\n* [.Type](#Errors.Type) ⇐ <code>TypeError</code>\n    * [new Type()](#new_Errors.Type_new)\n    * [.setMessage(parameterName, type, value, fromValue)](#Errors.Type.setMessage) ⇒ <code>String</code>\n\n<a name="new_Errors.Type_new"></a>\n#### new Type()\nUsed for normalizing the message of a type error\n\n<a name="Errors.Type.setMessage"></a>\n#### Type.setMessage(parameterName, type, value, fromValue) ⇒ <code>String</code>\n**Kind**: static method of <code>[Type](#Errors.Type)</code>  \n**Returns**: <code>String</code> - compiled error message  \n\n| Param | Type | Description |\n| --- | --- | --- |\n| parameterName | <code>Any</code> | name of parameter |\n| type | <code>String</code> | Type String |\n| value | <code>Any</code> | value that caused error |\n| fromValue | <code>Any</code> | optional value where the parameter came from like an object or array |\n\n**Example**  \n```javascript\nlet test={a:1,b:0};\n\nif(typeof test.b!==\'object\'){\n    err=new Errors.Type;\n    err.setMessage(\n        \'b\',\n        \'Object\',\n        test.b,\n        test\n    );\n    throw err;\n}\n```\n**Example**  \n```sh\n\ngit/node-error-classes/example/typeError.js:19\n        throw err;\n        ^\n\n        TypeError: \'numberOne\' Expects String but got number : 6\n\n        at Type (/home/bmiller/git/node-error-classes/lib/Type.js:12:1)\n        at multiplyNumbers (/home/bmiller/git/node-error-classes/example/typeError.js:13:13)\n```\n',
+17 silly publish   readmeFilename: 'README.md',
+17 silly publish   gitHead: '7bef8c6332a7a2807277ac4adddcc1e10fb5ceeb',
+17 silly publish   _id: 'node-error-classes@1.0.2',
+17 silly publish   _shasum: '2df09fdce3a56864a5a078e0a0e35f834051fc45',
+17 silly publish   _from: '.' }
+18 verbose getPublishConfig undefined
+19 silly mapToRegistry name node-error-classes
+20 silly mapToRegistry using default registry
+21 silly mapToRegistry registry https://registry.npmjs.org/
+22 silly mapToRegistry uri https://registry.npmjs.org/node-error-classes
+23 verbose publish registryBase https://registry.npmjs.org/
+24 silly publish uploading /home/bmiller/.npm/node-error-classes/1.0.2/package.tgz
+25 verbose request uri https://registry.npmjs.org/node-error-classes
+26 verbose request sending authorization for write operation
+27 info attempt registry request try #1 at 19:55:58
+28 verbose request id ad2bc2734d0c2bad
+29 http request PUT https://registry.npmjs.org/node-error-classes
+30 http 403 https://registry.npmjs.org/node-error-classes
+31 verbose headers { 'content-type': 'application/json',
+31 verbose headers   'cache-control': 'max-age=300',
+31 verbose headers   'content-length': '95',
+31 verbose headers   'accept-ranges': 'bytes',
+31 verbose headers   date: 'Wed, 27 Jan 2016 03:55:59 GMT',
+31 verbose headers   via: '1.1 varnish',
+31 verbose headers   connection: 'keep-alive',
+31 verbose headers   'x-served-by': 'cache-lax1420-LAX',
+31 verbose headers   'x-cache': 'MISS',
+31 verbose headers   'x-cache-hits': '0',
+31 verbose headers   'x-timer': 'S1453866958.784558,VS0,VE229' }
+32 verbose request invalidating /home/bmiller/.npm/registry.npmjs.org/node-error-classes on PUT
+33 error publish Failed PUT 403
+34 verbose stack Error: "You cannot publish over the previously published version 1.0.2." : node-error-classes
+34 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+34 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+34 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+34 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:198:22)
+34 verbose stack     at emitTwo (events.js:87:13)
+34 verbose stack     at Request.emit (events.js:172:7)
+34 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1063:14)
+34 verbose stack     at emitOne (events.js:82:20)
+34 verbose stack     at Request.emit (events.js:169:7)
+34 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1009:12)
+35 verbose statusCode 403
+36 verbose pkgid node-error-classes
+37 verbose cwd /home/bmiller/git/node-error-classes
+38 error Linux 4.2.0-23-generic
+39 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+40 error node v4.2.3
+41 error npm  v2.14.7
+42 error code E403
+43 error "You cannot publish over the previously published version 1.0.2." : node-error-classes
+44 error If you need help, you may report this error at:
+44 error     <https://github.com/npm/npm/issues>
+45 verbose exit [ 1, true ]
