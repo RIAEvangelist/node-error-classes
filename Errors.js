@@ -21,10 +21,10 @@
  * @namespace Errors
  */
 
-const RequiredParameter=require(`./lib/RequiredParameter.js`);
-const InvalidParameter=require(`./lib/InvalidParameter.js`);
-const Type=require(`./lib/Type.js`);
-const SocketUnavailable=require(`./lib/SocketUnavailable.js`);
+const RequiredParameter=require('./lib/RequiredParameter.js');
+const InvalidParameter=require('./lib/InvalidParameter.js');
+const Type=require('./lib/Type.js');
+const SocketUnavailable=require('./lib/SocketUnavailable.js');
 
 exports.RequiredParameter=RequiredParameter;
 exports.InvalidParameter=InvalidParameter;
