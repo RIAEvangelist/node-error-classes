@@ -19,6 +19,9 @@ Errors=require('node-error-classes');
 ```
 
 * [Errors](#Errors) : <code>object</code>
+    * [.Immutable](#Errors.Immutable) ⇐ <code>Error</code>
+        * [new Immutable()](#new_Errors.Immutable_new)
+        * [.setMessage(varaibleName, scope)](#Errors.Immutable.setMessage) ⇒ <code>String</code>
     * [.InvalidParameter](#Errors.InvalidParameter) ⇐ <code>Error</code>
         * [new InvalidParameter()](#new_Errors.InvalidParameter_new)
         * [.setMessage(parameterName, expected, got, [fromValue])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
@@ -31,7 +34,61 @@ Errors=require('node-error-classes');
     * [.Type](#Errors.Type) ⇐ <code>TypeError</code>
         * [new Type()](#new_Errors.Type_new)
         * [.setMessage(parameterName, type, value, fromValue)](#Errors.Type.setMessage) ⇒ <code>String</code>
+    * [.UndefinedValue](#Errors.UndefinedValue) ⇐ <code>Error</code>
+        * [new UndefinedValue()](#new_Errors.UndefinedValue_new)
+        * [.setMessage(variableName, variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
 
+<a name="Errors.Immutable"></a>
+### Errors.Immutable ⇐ <code>Error</code>
+**Kind**: static class of <code>[Errors](#Errors)</code>  
+**Extends:** <code>Error</code>  
+
+* [.Immutable](#Errors.Immutable) ⇐ <code>Error</code>
+    * [new Immutable()](#new_Errors.Immutable_new)
+    * [.setMessage(varaibleName, scope)](#Errors.Immutable.setMessage) ⇒ <code>String</code>
+
+<a name="new_Errors.Immutable_new"></a>
+#### new Immutable()
+Error for Immutable variables
+
+<a name="Errors.Immutable.setMessage"></a>
+#### Immutable.setMessage(varaibleName, scope) ⇒ <code>String</code>
+**Kind**: static method of <code>[Immutable](#Errors.Immutable)</code>  
+**Returns**: <code>String</code> - compiled error message  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| varaibleName | <code>Any</code> | Name of variable |
+| scope | <code>Any</code> | Scope of varaible |
+
+**Example**  
+```javascript
+let piKindOf = 22/7;
+
+      function getItRight(){
+          if(typeof piKindOf != 'undefined'){
+              const err = new Errors.Immutable;
+              err.setMessage(
+                  'piKindOf',
+                  'global'
+              );
+              throw err;
+          }
+          piKindOf = Math.PI;
+      }
+
+      getItRight();
+```
+**Example**  
+```sh
+
+    git/node-error-classes/example/immutable.js:13
+         throw err;
+         ^
+
+    Immutable: 'piKindOf' has been defined and is Immutable on 'global'.
+         Names must be unique
+```
 <a name="Errors.InvalidParameter"></a>
 ### Errors.InvalidParameter ⇐ <code>Error</code>
 **Kind**: static class of <code>[Errors](#Errors)</code>  
@@ -251,4 +308,48 @@ git/node-error-classes/example/typeError.js:19
 
         at Type (/home/bmiller/git/node-error-classes/lib/Type.js:12:1)
         at multiplyNumbers (/home/bmiller/git/node-error-classes/example/typeError.js:13:13)
+```
+<a name="Errors.UndefinedValue"></a>
+### Errors.UndefinedValue ⇐ <code>Error</code>
+**Kind**: static class of <code>[Errors](#Errors)</code>  
+**Extends:** <code>Error</code>  
+
+* [.UndefinedValue](#Errors.UndefinedValue) ⇐ <code>Error</code>
+    * [new UndefinedValue()](#new_Errors.UndefinedValue_new)
+    * [.setMessage(variableName, variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
+
+<a name="new_Errors.UndefinedValue_new"></a>
+#### new UndefinedValue()
+Error for undefined values
+
+<a name="Errors.UndefinedValue.setMessage"></a>
+#### UndefinedValue.setMessage(variableName, variable) ⇒ <code>String</code>
+**Kind**: static method of <code>[UndefinedValue](#Errors.UndefinedValue)</code>  
+**Returns**: <code>String</code> - compiled error message  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| variableName | <code>Any</code> | name of variable |
+| variable | <code>Any</code> | value of varible |
+
+**Example**  
+```javascript
+if(!importantPassword){
+       const err = new Errors.Undefined;
+       err.setMessage(
+           'importantPassword',
+           importantPassword
+       );
+       throw err;
+   }
+   console.log(`Dont forget this importantPassword: ${importantPassword}, don't!!!`);
+```
+**Example**  
+```sh
+    git/node-error-classes/example/undefined.js:14
+         throw err;
+         ^
+
+    Undefined: Expected 'importantPassword' but to be defined or filled but was undefined or empty
+         'undefined'
 ```
