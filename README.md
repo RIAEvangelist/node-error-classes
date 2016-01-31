@@ -58,7 +58,7 @@ Error for Immutable variables
 
 | Param | Type | Description |
 | --- | --- | --- |
-| varaibleName | <code>Any</code> | Name of variable |
+| varaibleName | <code>String</code> | Name of variable |
 | scope | <code>Any</code> | Scope of varaible |
 
 **Example**  
@@ -82,12 +82,13 @@ let piKindOf = 22/7;
 **Example**  
 ```sh
 
-    git/node-error-classes/example/immutable.js:13
-         throw err;
-         ^
+/git/node-error-classes/example/immutable.js:14
+    throw err;
+    ^
 
-    Immutable: 'piKindOf' has been defined and is Immutable on 'global'.
-         Names must be unique
+Immutable: 'piKindOf' has been defined and cannot be changed on the scope of : 'global'.
+    Variable names here must be unique
+
 ```
 <a name="Errors.InvalidParameter"></a>
 ### Errors.InvalidParameter ⇐ <code>Error</code>
@@ -329,7 +330,7 @@ Error for undefined values
 
 | Param | Type | Description |
 | --- | --- | --- |
-| variableName | <code>Any</code> | name of variable |
+| variableName | <code>String</code> | name of variable |
 | variable | <code>Any</code> | value of varible |
 
 **Example**  
@@ -346,10 +347,10 @@ if(!importantPassword){
 ```
 **Example**  
 ```sh
-    git/node-error-classes/example/undefined.js:14
-         throw err;
-         ^
+git/node-error-classes/example/undefined.js:14
+     throw err;
+     ^
 
-    Undefined: Expected 'importantPassword' but to be defined or filled but was undefined or empty
-         'undefined'
+Undefined: Expected 'importantPassword' but to be defined or filled but was undefined or empty
+     'undefined'
 ```
