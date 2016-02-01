@@ -34,6 +34,9 @@ Errors=require('node-error-classes');
     * [.Type](#Errors.Type) ⇐ <code>TypeError</code>
         * [new Type()](#new_Errors.Type_new)
         * [.setMessage(parameterName, type, value, scope)](#Errors.Type.setMessage) ⇒ <code>String</code>
+    * [.UndefinedMethod](#Errors.UndefinedMethod) ⇐ <code>Error</code>
+        * [new UndefinedMethod()](#new_Errors.UndefinedMethod_new)
+        * [.setMessage(scope, methodName, method)](#Errors.UndefinedMethod.setMessage) ⇒ <code>String</code>
     * [.UndefinedValue](#Errors.UndefinedValue) ⇐ <code>Error</code>
         * [new UndefinedValue()](#new_Errors.UndefinedValue_new)
         * [.setMessage(variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
@@ -310,6 +313,55 @@ git/node-error-classes/example/typeError.js:19
 
         at Type (/home/bmiller/git/node-error-classes/lib/Type.js:12:1)
         at multiplyNumbers (/home/bmiller/git/node-error-classes/example/typeError.js:13:13)
+```
+<a name="Errors.UndefinedMethod"></a>
+### Errors.UndefinedMethod ⇐ <code>Error</code>
+**Kind**: static class of <code>[Errors](#Errors)</code>  
+**Extends:** <code>Error</code>  
+
+* [.UndefinedMethod](#Errors.UndefinedMethod) ⇐ <code>Error</code>
+    * [new UndefinedMethod()](#new_Errors.UndefinedMethod_new)
+    * [.setMessage(scope, methodName, method)](#Errors.UndefinedMethod.setMessage) ⇒ <code>String</code>
+
+<a name="new_Errors.UndefinedMethod_new"></a>
+#### new UndefinedMethod()
+Error for undefined methods
+
+<a name="Errors.UndefinedMethod.setMessage"></a>
+#### UndefinedMethod.setMessage(scope, methodName, method) ⇒ <code>String</code>
+**Kind**: static method of <code>[UndefinedMethod](#Errors.UndefinedMethod)</code>  
+**Returns**: <code>String</code> - compiled error message  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| scope | <code>Any</code> | scope of undefined method |
+| methodName | <code>String</code> | method name |
+| method | <code>Any</code> | method |
+
+**Example**  
+```javascript
+function inverseMatrix(mat){
+         if(typeof determinant == 'undefined'){
+             const err = new Errors.UndefinedMethod;
+             err.setMessage(
+                 'inverseMatrix',
+                 'inverseMatrix',
+                 inverseMatrix
+             );
+             throw err;
+         }
+     }
+```
+**Example**  
+```sh
+
+git/node-error-classes/example/undefinedMethod.js:13
+        throw err;
+        ^
+
+    UndefinedMethod: inverseMatrix needs to use inverseMatrix. But it was not set
+        requires [Function: inverseMatrix]
+
 ```
 <a name="Errors.UndefinedValue"></a>
 ### Errors.UndefinedValue ⇐ <code>Error</code>
