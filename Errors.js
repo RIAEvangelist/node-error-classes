@@ -26,7 +26,7 @@ const InvalidParameter=require('./lib/InvalidParameter.js');
 const Type=require('./lib/Type.js');
 const SocketUnavailable=require('./lib/SocketUnavailable.js');
 const UndefinedValue = require('./lib/UndefinedValue.js');
-const UndefinedMethod = require('./lib/UndefinedMethod.js');
+const InvalidMethod = require('./lib/InvalidMethod.js');
 const Immutable = require('./lib/Immutable.js');
 
 exports.RequiredParameter=RequiredParameter;
@@ -35,4 +35,4 @@ exports.Type=Type;
 exports.SocketUnavailable=SocketUnavailable;
 exports.UndefinedValue = UndefinedValue;
 exports.Immutable=Immutable;
-exports.UndefinedMethod = UndefinedMethod;
+exports.InvalidMethod = InvalidMethod;
