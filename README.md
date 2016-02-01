@@ -19,19 +19,81 @@ Errors=require('node-error-classes');
 ```
 
 * [Errors](#Errors) : <code>object</code>
+    * [.Immutable](#Errors.Immutable) ⇐ <code>Error</code>
+        * [new Immutable()](#new_Errors.Immutable_new)
+        * [.setMessage(varaibleName, scope)](#Errors.Immutable.setMessage) ⇒ <code>String</code>
     * [.InvalidParameter](#Errors.InvalidParameter) ⇐ <code>Error</code>
         * [new InvalidParameter()](#new_Errors.InvalidParameter_new)
-        * [.setMessage(parameterName, expected, got, [fromValue])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
+        * [.setMessage(parameterName, expected, got, [scope])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
     * [.RequiredParameter](#Errors.RequiredParameter) ⇐ <code>Error</code>
         * [new RequiredParameter()](#new_Errors.RequiredParameter_new)
-        * [.setMessage(parameterName, [fromValue])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>
+        * [.setMessage(parameterName, [scope])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>
     * [.SocketUnavailable](#Errors.SocketUnavailable) ⇐ <code>Error</code>
         * [new SocketUnavailable()](#new_Errors.SocketUnavailable_new)
-        * [.setMessage(socketPath, [fromValue])](#Errors.SocketUnavailable.setMessage) ⇒ <code>String</code>
+        * [.setMessage(socketPath, [scope])](#Errors.SocketUnavailable.setMessage) ⇒ <code>String</code>
     * [.Type](#Errors.Type) ⇐ <code>TypeError</code>
         * [new Type()](#new_Errors.Type_new)
-        * [.setMessage(parameterName, type, value, fromValue)](#Errors.Type.setMessage) ⇒ <code>String</code>
+        * [.setMessage(parameterName, type, value, scope)](#Errors.Type.setMessage) ⇒ <code>String</code>
+    * [.UndefinedMethod](#Errors.UndefinedMethod) ⇐ <code>Error</code>
+        * [new UndefinedMethod()](#new_Errors.UndefinedMethod_new)
+        * [.setMessage(scope, methodName, method)](#Errors.UndefinedMethod.setMessage) ⇒ <code>String</code>
+    * [.UndefinedValue](#Errors.UndefinedValue) ⇐ <code>Error</code>
+        * [new UndefinedValue()](#new_Errors.UndefinedValue_new)
+        * [.setMessage(variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
 
+<a name="Errors.Immutable"></a>
+### Errors.Immutable ⇐ <code>Error</code>
+**Kind**: static class of <code>[Errors](#Errors)</code>  
+**Extends:** <code>Error</code>  
+
+* [.Immutable](#Errors.Immutable) ⇐ <code>Error</code>
+    * [new Immutable()](#new_Errors.Immutable_new)
+    * [.setMessage(varaibleName, scope)](#Errors.Immutable.setMessage) ⇒ <code>String</code>
+
+<a name="new_Errors.Immutable_new"></a>
+#### new Immutable()
+Error for Immutable variables
+
+<a name="Errors.Immutable.setMessage"></a>
+#### Immutable.setMessage(varaibleName, scope) ⇒ <code>String</code>
+**Kind**: static method of <code>[Immutable](#Errors.Immutable)</code>  
+**Returns**: <code>String</code> - compiled error message  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| varaibleName | <code>String</code> | Name of variable |
+| scope | <code>Any</code> | Scope of varaible |
+
+**Example**  
+```javascript
+function populateUser() {
+        let user = {
+            name: 'Mike',
+            age: 99,
+        }
+        if (typeof user.age != 'undefined') {
+            const err = new Errors.Immutable;
+            err.setMessage(
+                'user.age',
+                'pupulateUser'
+            );
+            throw err;
+        }
+        user.age = 45;
+    }
+
+ populateUser();
+```
+**Example**  
+```sh
+
+ /git/node-error-classes/example/immutable.js:16
+    throw err;
+         ^
+
+ Immutable: 'user.age' has been defined and cannot be changed on the scope of : 'pupulateUser'.
+    Variable names here must be unique
+```
 <a name="Errors.InvalidParameter"></a>
 ### Errors.InvalidParameter ⇐ <code>Error</code>
 **Kind**: static class of <code>[Errors](#Errors)</code>  
@@ -39,14 +101,14 @@ Errors=require('node-error-classes');
 
 * [.InvalidParameter](#Errors.InvalidParameter) ⇐ <code>Error</code>
     * [new InvalidParameter()](#new_Errors.InvalidParameter_new)
-    * [.setMessage(parameterName, expected, got, [fromValue])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
+    * [.setMessage(parameterName, expected, got, [scope])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
 
 <a name="new_Errors.InvalidParameter_new"></a>
 #### new InvalidParameter()
 Error for invalid parameters
 
 <a name="Errors.InvalidParameter.setMessage"></a>
-#### InvalidParameter.setMessage(parameterName, expected, got, [fromValue]) ⇒ <code>String</code>
+#### InvalidParameter.setMessage(parameterName, expected, got, [scope]) ⇒ <code>String</code>
 **Kind**: static method of <code>[InvalidParameter](#Errors.InvalidParameter)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
@@ -55,7 +117,7 @@ Error for invalid parameters
 | parameterName | <code>Any</code> | name of parameter |
 | expected | <code>Any</code> | what it expected |
 | got | <code>Any</code> | what it got |
-| [fromValue] | <code>Any</code> | optional value where the parameter came from like an object or array |
+| [scope] | <code>Any</code> | optional value where the parameter came from like an object or array |
 
 **Example**  
 ```javascript
@@ -79,7 +141,7 @@ git/node-error-classes/example/invalidParam.js:19
         throw err;
         ^
 
-        InvalidParameter: 'numberOne' Expects 'a value less than 5' but got 6
+        InvalidParameter: 'b' Expects 'a value greater than 0' but got 0
 
         at InvalidParameter (/home/bmiller/git/node-error-classes/lib/InvalidParameter.js:11:1)
         at multiplyNumbers (/home/bmiller/git/node-error-classes/example/invalidParam.js:13:13)
@@ -92,21 +154,21 @@ git/node-error-classes/example/invalidParam.js:19
 
 * [.RequiredParameter](#Errors.RequiredParameter) ⇐ <code>Error</code>
     * [new RequiredParameter()](#new_Errors.RequiredParameter_new)
-    * [.setMessage(parameterName, [fromValue])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>
+    * [.setMessage(parameterName, [scope])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>
 
 <a name="new_Errors.RequiredParameter_new"></a>
 #### new RequiredParameter()
 error for required params that are not set or passed
 
 <a name="Errors.RequiredParameter.setMessage"></a>
-#### RequiredParameter.setMessage(parameterName, [fromValue]) ⇒ <code>String</code>
+#### RequiredParameter.setMessage(parameterName, [scope]) ⇒ <code>String</code>
 **Kind**: static method of <code>[RequiredParameter](#Errors.RequiredParameter)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | parameterName | <code>Any</code> | name of parameter |
-| [fromValue] | <code>Any</code> | optional value where the parameter came from like an object or array |
+| [scope] | <code>Any</code> | optional value where the parameter came from like an object or array |
 
 **Example**  
 ```javascript
@@ -140,21 +202,21 @@ git/node-error-classes/example/requiredParam.js:17
 
 * [.SocketUnavailable](#Errors.SocketUnavailable) ⇐ <code>Error</code>
     * [new SocketUnavailable()](#new_Errors.SocketUnavailable_new)
-    * [.setMessage(socketPath, [fromValue])](#Errors.SocketUnavailable.setMessage) ⇒ <code>String</code>
+    * [.setMessage(socketPath, [scope])](#Errors.SocketUnavailable.setMessage) ⇒ <code>String</code>
 
 <a name="new_Errors.SocketUnavailable_new"></a>
 #### new SocketUnavailable()
 Error for when an expected socket is not available
 
 <a name="Errors.SocketUnavailable.setMessage"></a>
-#### SocketUnavailable.setMessage(socketPath, [fromValue]) ⇒ <code>String</code>
+#### SocketUnavailable.setMessage(socketPath, [scope]) ⇒ <code>String</code>
 **Kind**: static method of <code>[SocketUnavailable](#Errors.SocketUnavailable)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | socketPath | <code>Any</code> | name of parameter |
-| [fromValue] | <code>Any</code> | optional value with information on the socket or constructor |
+| [scope] | <code>Any</code> | optional value with information on the socket or constructor |
 
 **Example**  
 ```javascript
@@ -207,14 +269,14 @@ const ipc=require('node-ipc');
 
 * [.Type](#Errors.Type) ⇐ <code>TypeError</code>
     * [new Type()](#new_Errors.Type_new)
-    * [.setMessage(parameterName, type, value, fromValue)](#Errors.Type.setMessage) ⇒ <code>String</code>
+    * [.setMessage(parameterName, type, value, scope)](#Errors.Type.setMessage) ⇒ <code>String</code>
 
 <a name="new_Errors.Type_new"></a>
 #### new Type()
 Used for normalizing the message of a type error
 
 <a name="Errors.Type.setMessage"></a>
-#### Type.setMessage(parameterName, type, value, fromValue) ⇒ <code>String</code>
+#### Type.setMessage(parameterName, type, value, scope) ⇒ <code>String</code>
 **Kind**: static method of <code>[Type](#Errors.Type)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
@@ -223,7 +285,7 @@ Used for normalizing the message of a type error
 | parameterName | <code>Any</code> | name of parameter |
 | type | <code>String</code> | Type String |
 | value | <code>Any</code> | value that caused error |
-| fromValue | <code>Any</code> | optional value where the parameter came from like an object or array |
+| scope | <code>Any</code> | optional value where the parameter came from like an object or array |
 
 **Example**  
 ```javascript
@@ -251,4 +313,94 @@ git/node-error-classes/example/typeError.js:19
 
         at Type (/home/bmiller/git/node-error-classes/lib/Type.js:12:1)
         at multiplyNumbers (/home/bmiller/git/node-error-classes/example/typeError.js:13:13)
+```
+<a name="Errors.UndefinedMethod"></a>
+### Errors.UndefinedMethod ⇐ <code>Error</code>
+**Kind**: static class of <code>[Errors](#Errors)</code>  
+**Extends:** <code>Error</code>  
+
+* [.UndefinedMethod](#Errors.UndefinedMethod) ⇐ <code>Error</code>
+    * [new UndefinedMethod()](#new_Errors.UndefinedMethod_new)
+    * [.setMessage(scope, methodName, method)](#Errors.UndefinedMethod.setMessage) ⇒ <code>String</code>
+
+<a name="new_Errors.UndefinedMethod_new"></a>
+#### new UndefinedMethod()
+Error for undefined methods
+
+<a name="Errors.UndefinedMethod.setMessage"></a>
+#### UndefinedMethod.setMessage(scope, methodName, method) ⇒ <code>String</code>
+**Kind**: static method of <code>[UndefinedMethod](#Errors.UndefinedMethod)</code>  
+**Returns**: <code>String</code> - compiled error message  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| scope | <code>Any</code> | scope of undefined method |
+| methodName | <code>String</code> | method name |
+| method | <code>Any</code> | method |
+
+**Example**  
+```javascript
+function inverseMatrix(mat){
+         if(typeof determinant == 'undefined'){
+             const err = new Errors.UndefinedMethod;
+             err.setMessage(
+                 'inverseMatrix',
+                 'inverseMatrix',
+                 inverseMatrix
+             );
+             throw err;
+         }
+     }
+```
+**Example**  
+```sh
+
+git/node-error-classes/example/undefinedMethod.js:13
+        throw err;
+        ^
+
+    UndefinedMethod: inverseMatrix needs to use inverseMatrix. But it was not set
+        requires [Function: inverseMatrix]
+
+```
+<a name="Errors.UndefinedValue"></a>
+### Errors.UndefinedValue ⇐ <code>Error</code>
+**Kind**: static class of <code>[Errors](#Errors)</code>  
+**Extends:** <code>Error</code>  
+
+* [.UndefinedValue](#Errors.UndefinedValue) ⇐ <code>Error</code>
+    * [new UndefinedValue()](#new_Errors.UndefinedValue_new)
+    * [.setMessage(variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
+
+<a name="new_Errors.UndefinedValue_new"></a>
+#### new UndefinedValue()
+Error for undefined values
+
+<a name="Errors.UndefinedValue.setMessage"></a>
+#### UndefinedValue.setMessage(variable) ⇒ <code>String</code>
+**Kind**: static method of <code>[UndefinedValue](#Errors.UndefinedValue)</code>  
+**Returns**: <code>String</code> - compiled error message  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| variable | <code>Any</code> | varible |
+
+**Example**  
+```javascript
+if(!importantPassword){
+       const err = new Errors.Undefined;
+       err.setMessage(
+           'importantPassword',
+           importantPassword
+       );
+       throw err;
+   }
+```
+**Example**  
+```sh
+    git/node-error-classes/example/undefinedValue.js:14
+       throw err;
+       ^
+
+    Undefined: 'string'
 ```
