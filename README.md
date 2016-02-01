@@ -24,7 +24,7 @@ Errors=require('node-error-classes');
         * [.setMessage(varaibleName, scope)](#Errors.Immutable.setMessage) ⇒ <code>String</code>
     * [.InvalidMethod](#Errors.InvalidMethod) ⇐ <code>Error</code>
         * [new InvalidMethod()](#new_Errors.InvalidMethod_new)
-        * [.setMessage(methodName, method, scope)](#Errors.InvalidMethod.setMessage) ⇒ <code>String</code>
+        * [.setMessage(methodName, method, [scope])](#Errors.InvalidMethod.setMessage) ⇒ <code>String</code>
     * [.InvalidParameter](#Errors.InvalidParameter) ⇐ <code>Error</code>
         * [new InvalidParameter()](#new_Errors.InvalidParameter_new)
         * [.setMessage(parameterName, expected, got, [scope])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
@@ -103,14 +103,14 @@ function populateUser() {
 
 * [.InvalidMethod](#Errors.InvalidMethod) ⇐ <code>Error</code>
     * [new InvalidMethod()](#new_Errors.InvalidMethod_new)
-    * [.setMessage(methodName, method, scope)](#Errors.InvalidMethod.setMessage) ⇒ <code>String</code>
+    * [.setMessage(methodName, method, [scope])](#Errors.InvalidMethod.setMessage) ⇒ <code>String</code>
 
 <a name="new_Errors.InvalidMethod_new"></a>
 #### new InvalidMethod()
 Error for methods which are either undefined or not methods (functions)
 
 <a name="Errors.InvalidMethod.setMessage"></a>
-#### InvalidMethod.setMessage(methodName, method, scope) ⇒ <code>String</code>
+#### InvalidMethod.setMessage(methodName, method, [scope]) ⇒ <code>String</code>
 **Kind**: static method of <code>[InvalidMethod](#Errors.InvalidMethod)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
@@ -118,7 +118,7 @@ Error for methods which are either undefined or not methods (functions)
 | --- | --- | --- |
 | methodName | <code>String</code> | method name |
 | method | <code>Any</code> | expected method |
-| scope | <code>Any</code> | scope of undefined method |
+| [scope] | <code>Any</code> | scope in which the undefined method is expected |
 
 **Example**  
 ```javascript
