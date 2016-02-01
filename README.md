@@ -24,16 +24,16 @@ Errors=require('node-error-classes');
         * [.setMessage(varaibleName, scope)](#Errors.Immutable.setMessage) ⇒ <code>String</code>
     * [.InvalidParameter](#Errors.InvalidParameter) ⇐ <code>Error</code>
         * [new InvalidParameter()](#new_Errors.InvalidParameter_new)
-        * [.setMessage(parameterName, expected, got, [fromValue])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
+        * [.setMessage(parameterName, expected, got, [scope])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
     * [.RequiredParameter](#Errors.RequiredParameter) ⇐ <code>Error</code>
         * [new RequiredParameter()](#new_Errors.RequiredParameter_new)
-        * [.setMessage(parameterName, [fromValue])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>
+        * [.setMessage(parameterName, [scope])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>
     * [.SocketUnavailable](#Errors.SocketUnavailable) ⇐ <code>Error</code>
         * [new SocketUnavailable()](#new_Errors.SocketUnavailable_new)
-        * [.setMessage(socketPath, [fromValue])](#Errors.SocketUnavailable.setMessage) ⇒ <code>String</code>
+        * [.setMessage(socketPath, [scope])](#Errors.SocketUnavailable.setMessage) ⇒ <code>String</code>
     * [.Type](#Errors.Type) ⇐ <code>TypeError</code>
         * [new Type()](#new_Errors.Type_new)
-        * [.setMessage(parameterName, type, value, fromValue)](#Errors.Type.setMessage) ⇒ <code>String</code>
+        * [.setMessage(parameterName, type, value, scope)](#Errors.Type.setMessage) ⇒ <code>String</code>
     * [.UndefinedValue](#Errors.UndefinedValue) ⇐ <code>Error</code>
         * [new UndefinedValue()](#new_Errors.UndefinedValue_new)
         * [.setMessage(variableName, variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
@@ -63,32 +63,32 @@ Error for Immutable variables
 
 **Example**  
 ```javascript
-let piKindOf = 22/7;
-
-      function getItRight(){
-          if(typeof piKindOf != 'undefined'){
-              const err = new Errors.Immutable;
-              err.setMessage(
-                  'piKindOf',
-                  'global'
-              );
-              throw err;
-          }
-          piKindOf = Math.PI;
-      }
-
-      getItRight();
+function populateUser() {
+        let user = {
+            name: 'Mike',
+            age: 99,
+        }
+        if (typeof user.age != 'undefined') {
+            const err = new Errors.Immutable;
+            err.setMessage(
+                'user.age',
+                'pupulateUser'
+            );
+            throw err;
+        }
+        user.age = 45;
+    }
+}
 ```
 **Example**  
 ```sh
 
-/git/node-error-classes/example/immutable.js:14
+ /git/node-error-classes/example/immutable.js:16
     throw err;
-    ^
+         ^
 
-Immutable: 'piKindOf' has been defined and cannot be changed on the scope of : 'global'.
+Immutable: 'user.age' has been defined and cannot be changed on the scope of : 'pupulateUser'.
     Variable names here must be unique
-
 ```
 <a name="Errors.InvalidParameter"></a>
 ### Errors.InvalidParameter ⇐ <code>Error</code>
@@ -97,14 +97,14 @@ Immutable: 'piKindOf' has been defined and cannot be changed on the scope of : '
 
 * [.InvalidParameter](#Errors.InvalidParameter) ⇐ <code>Error</code>
     * [new InvalidParameter()](#new_Errors.InvalidParameter_new)
-    * [.setMessage(parameterName, expected, got, [fromValue])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
+    * [.setMessage(parameterName, expected, got, [scope])](#Errors.InvalidParameter.setMessage) ⇒ <code>String</code>
 
 <a name="new_Errors.InvalidParameter_new"></a>
 #### new InvalidParameter()
 Error for invalid parameters
 
 <a name="Errors.InvalidParameter.setMessage"></a>
-#### InvalidParameter.setMessage(parameterName, expected, got, [fromValue]) ⇒ <code>String</code>
+#### InvalidParameter.setMessage(parameterName, expected, got, [scope]) ⇒ <code>String</code>
 **Kind**: static method of <code>[InvalidParameter](#Errors.InvalidParameter)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
@@ -113,7 +113,7 @@ Error for invalid parameters
 | parameterName | <code>Any</code> | name of parameter |
 | expected | <code>Any</code> | what it expected |
 | got | <code>Any</code> | what it got |
-| [fromValue] | <code>Any</code> | optional value where the parameter came from like an object or array |
+| [scope] | <code>Any</code> | optional value where the parameter came from like an object or array |
 
 **Example**  
 ```javascript
@@ -137,7 +137,7 @@ git/node-error-classes/example/invalidParam.js:19
         throw err;
         ^
 
-        InvalidParameter: 'numberOne' Expects 'a value less than 5' but got 6
+        InvalidParameter: 'b' Expects 'a value greater than 0' but got 0
 
         at InvalidParameter (/home/bmiller/git/node-error-classes/lib/InvalidParameter.js:11:1)
         at multiplyNumbers (/home/bmiller/git/node-error-classes/example/invalidParam.js:13:13)
@@ -150,21 +150,21 @@ git/node-error-classes/example/invalidParam.js:19
 
 * [.RequiredParameter](#Errors.RequiredParameter) ⇐ <code>Error</code>
     * [new RequiredParameter()](#new_Errors.RequiredParameter_new)
-    * [.setMessage(parameterName, [fromValue])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>
+    * [.setMessage(parameterName, [scope])](#Errors.RequiredParameter.setMessage) ⇒ <code>String</code>
 
 <a name="new_Errors.RequiredParameter_new"></a>
 #### new RequiredParameter()
 error for required params that are not set or passed
 
 <a name="Errors.RequiredParameter.setMessage"></a>
-#### RequiredParameter.setMessage(parameterName, [fromValue]) ⇒ <code>String</code>
+#### RequiredParameter.setMessage(parameterName, [scope]) ⇒ <code>String</code>
 **Kind**: static method of <code>[RequiredParameter](#Errors.RequiredParameter)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | parameterName | <code>Any</code> | name of parameter |
-| [fromValue] | <code>Any</code> | optional value where the parameter came from like an object or array |
+| [scope] | <code>Any</code> | optional value where the parameter came from like an object or array |
 
 **Example**  
 ```javascript
@@ -198,21 +198,21 @@ git/node-error-classes/example/requiredParam.js:17
 
 * [.SocketUnavailable](#Errors.SocketUnavailable) ⇐ <code>Error</code>
     * [new SocketUnavailable()](#new_Errors.SocketUnavailable_new)
-    * [.setMessage(socketPath, [fromValue])](#Errors.SocketUnavailable.setMessage) ⇒ <code>String</code>
+    * [.setMessage(socketPath, [scope])](#Errors.SocketUnavailable.setMessage) ⇒ <code>String</code>
 
 <a name="new_Errors.SocketUnavailable_new"></a>
 #### new SocketUnavailable()
 Error for when an expected socket is not available
 
 <a name="Errors.SocketUnavailable.setMessage"></a>
-#### SocketUnavailable.setMessage(socketPath, [fromValue]) ⇒ <code>String</code>
+#### SocketUnavailable.setMessage(socketPath, [scope]) ⇒ <code>String</code>
 **Kind**: static method of <code>[SocketUnavailable](#Errors.SocketUnavailable)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | socketPath | <code>Any</code> | name of parameter |
-| [fromValue] | <code>Any</code> | optional value with information on the socket or constructor |
+| [scope] | <code>Any</code> | optional value with information on the socket or constructor |
 
 **Example**  
 ```javascript
@@ -265,14 +265,14 @@ const ipc=require('node-ipc');
 
 * [.Type](#Errors.Type) ⇐ <code>TypeError</code>
     * [new Type()](#new_Errors.Type_new)
-    * [.setMessage(parameterName, type, value, fromValue)](#Errors.Type.setMessage) ⇒ <code>String</code>
+    * [.setMessage(parameterName, type, value, scope)](#Errors.Type.setMessage) ⇒ <code>String</code>
 
 <a name="new_Errors.Type_new"></a>
 #### new Type()
 Used for normalizing the message of a type error
 
 <a name="Errors.Type.setMessage"></a>
-#### Type.setMessage(parameterName, type, value, fromValue) ⇒ <code>String</code>
+#### Type.setMessage(parameterName, type, value, scope) ⇒ <code>String</code>
 **Kind**: static method of <code>[Type](#Errors.Type)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
@@ -281,7 +281,7 @@ Used for normalizing the message of a type error
 | parameterName | <code>Any</code> | name of parameter |
 | type | <code>String</code> | Type String |
 | value | <code>Any</code> | value that caused error |
-| fromValue | <code>Any</code> | optional value where the parameter came from like an object or array |
+| scope | <code>Any</code> | optional value where the parameter came from like an object or array |
 
 **Example**  
 ```javascript
@@ -343,14 +343,13 @@ if(!importantPassword){
        );
        throw err;
    }
-   console.log(`Dont forget this importantPassword: ${importantPassword}, don't!!!`);
 ```
 **Example**  
 ```sh
-git/node-error-classes/example/undefined.js:14
-     throw err;
-     ^
+    git/node-error-classes/example/undefined.js:14
+        throw err;
+         ^
 
-Undefined: Expected 'importantPassword' but to be defined or filled but was undefined or empty
-     'undefined'
+    Undefined: Expected 'importantPassword' but to be defined or filled but was undefined or empty
+        'undefined'
 ```

@@ -2,18 +2,20 @@
 
 const Errors = require('../Errors.js');
 
-let piKindOf = 22/7;
-
-function getItRight(){
-    if(typeof piKindOf != 'undefined'){
+function populateUser(){
+    let user = {
+        name : 'Mike',
+        age: 99,
+    }
+    if(typeof user.age != 'undefined'){
         const err = new Errors.Immutable;
         err.setMessage(
-            'piKindOf',
-            'global'
+            'user.age',
+            'pupulateUser'
         );
         throw err;
     }
-    piKindOf = Math.PI;
+    user.age = 45;
 }
 
-getItRight();
+populateUser();

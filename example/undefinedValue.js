@@ -13,7 +13,6 @@ function displayImportantPassword(){
         );
         throw err;
     }
-    console.log(`Dont forget this importantPassword: ${importantPassword}, don't!!!`);
 }
 
 displayImportantPassword();
