@@ -37,6 +37,8 @@ Errors=require('node-error-classes');
     * [.UndefinedValue](#Errors.UndefinedValue) ⇐ <code>Error</code>
         * [new UndefinedValue()](#new_Errors.UndefinedValue_new)
         * [.setMessage(variableName, variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
+    * [.BoilerPlate](#Errors.BoilerPlate) ⇐ <code>Error</code>
+        * [new BoilerPlate()](#new_Errors.BoilerPlate_new)
 
 <a name="Errors.Immutable"></a>
 ### Errors.Immutable ⇐ <code>Error</code>
@@ -78,7 +80,8 @@ function populateUser() {
         }
         user.age = 45;
     }
-}
+
+ populateUser();
 ```
 **Example**  
 ```sh
@@ -87,7 +90,7 @@ function populateUser() {
     throw err;
          ^
 
-Immutable: 'user.age' has been defined and cannot be changed on the scope of : 'pupulateUser'.
+ Immutable: 'user.age' has been defined and cannot be changed on the scope of : 'pupulateUser'.
     Variable names here must be unique
 ```
 <a name="Errors.InvalidParameter"></a>
@@ -346,10 +349,17 @@ if(!importantPassword){
 ```
 **Example**  
 ```sh
-    git/node-error-classes/example/undefined.js:14
-        throw err;
-         ^
+    git/node-error-classes/example/undefinedValue.js:14
+       throw err;
+       ^
 
-    Undefined: Expected 'importantPassword' but to be defined or filled but was undefined or empty
-        'undefined'
+    Undefined: 'string'
 ```
+<a name="Errors.BoilerPlate"></a>
+### Errors.BoilerPlate ⇐ <code>Error</code>
+**Kind**: static class of <code>[Errors](#Errors)</code>  
+**Extends:** <code>Error</code>  
+<a name="new_Errors.BoilerPlate_new"></a>
+#### new BoilerPlate()
+Error for whatever you want!
+
