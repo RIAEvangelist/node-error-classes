@@ -36,9 +36,7 @@ Errors=require('node-error-classes');
         * [.setMessage(parameterName, type, value, scope)](#Errors.Type.setMessage) ⇒ <code>String</code>
     * [.UndefinedValue](#Errors.UndefinedValue) ⇐ <code>Error</code>
         * [new UndefinedValue()](#new_Errors.UndefinedValue_new)
-        * [.setMessage(variableName, variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
-    * [.BoilerPlate](#Errors.BoilerPlate) ⇐ <code>Error</code>
-        * [new BoilerPlate()](#new_Errors.BoilerPlate_new)
+        * [.setMessage(variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
 
 <a name="Errors.Immutable"></a>
 ### Errors.Immutable ⇐ <code>Error</code>
@@ -320,21 +318,20 @@ git/node-error-classes/example/typeError.js:19
 
 * [.UndefinedValue](#Errors.UndefinedValue) ⇐ <code>Error</code>
     * [new UndefinedValue()](#new_Errors.UndefinedValue_new)
-    * [.setMessage(variableName, variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
+    * [.setMessage(variable)](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
 
 <a name="new_Errors.UndefinedValue_new"></a>
 #### new UndefinedValue()
 Error for undefined values
 
 <a name="Errors.UndefinedValue.setMessage"></a>
-#### UndefinedValue.setMessage(variableName, variable) ⇒ <code>String</code>
+#### UndefinedValue.setMessage(variable) ⇒ <code>String</code>
 **Kind**: static method of <code>[UndefinedValue](#Errors.UndefinedValue)</code>  
 **Returns**: <code>String</code> - compiled error message  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| variableName | <code>String</code> | name of variable |
-| variable | <code>Any</code> | value of varible |
+| variable | <code>Any</code> | varible |
 
 **Example**  
 ```javascript
@@ -355,11 +352,3 @@ if(!importantPassword){
 
     Undefined: 'string'
 ```
-<a name="Errors.BoilerPlate"></a>
-### Errors.BoilerPlate ⇐ <code>Error</code>
-**Kind**: static class of <code>[Errors](#Errors)</code>  
-**Extends:** <code>Error</code>  
-<a name="new_Errors.BoilerPlate_new"></a>
-#### new BoilerPlate()
-Error for whatever you want!
-
