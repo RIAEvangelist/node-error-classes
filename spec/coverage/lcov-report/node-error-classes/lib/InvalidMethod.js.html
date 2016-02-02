@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for node-error-classes/lib/RequiredParameter.js</title>
+    <title>Code coverage report for node-error-classes/lib/InvalidMethod.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,7 +16,7 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">node-error-classes/lib/</a> RequiredParameter.js
+      <a href="../../index.html">all files</a> / <a href="index.html">node-error-classes/lib/</a> InvalidMethod.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
@@ -25,9 +25,9 @@
         <span class='fraction'>5/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -101,8 +101,13 @@
 56
 57
 58
-59</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+59
+60
+61
+62
+63
+64
+65</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,75 +153,88 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
-&nbsp;
 const util = require('util');
 &nbsp;
 /**
+ * Error for methods which are either undefined or not methods (functions)
  *
- * error for required params that are not set or passed
- *
-* @extends Error
-* @class Errors.RequiredParameter
+ * @extends Error
+ * @class Errors.InvalidMethod
  * */
-class RequiredParameter extends Error {
+class InvalidMethod extends Error{
     /**
      * @example
      *
-     * let test={a:1,b:0};
      *
-     * if(!test.c){
-     *     err=new Errors.RequiredParameter;
-     *     err.setMessage(
-     *         'c',
-     *         test
-     *     );
-     *     throw err;
-     * }
-     *
+         const Errors = require('node-error-classes');
+&nbsp;
+         class User{
+            constructor(name,age){
+                this.name=name;
+                this.age=age;
+            }
+         }
+&nbsp;
+        const bob=new User('bob',42);
+&nbsp;
+        if(!bob.getInfo || typeof bob.getInfo !== 'function'){
+            const err=new Errors.InvalidMethod;
+            err.setMessage('getInfo',bob.getInfo,bob);
+        }
+&nbsp;
      * @example
      *
      * ```sh
      *
-     * git/node-error-classes/example/requiredParam.js:17
-        throw err;
-        ^
+     * git/node-error-classes/example/invalidMethod.js:23
+       throw err;
+       ^
 &nbsp;
-        RequiredParameter: Expects 'numberOne' to be defined
+    UndefinedMethod: Expects 'getInfo' to be Function but got undefined
+                Scope : User { name: 'bob', age: 42 }
+        at InvalidMethod (/home/bmiller/git/node-error-classes/lib/InvalidMethod.js:10:1)
+        at Object.&lt;anonymous&gt; (/home/bmiller/git/node-error-classes/example/invalidMethod.js:15:14)
 &nbsp;
-        at RequiredParameter (/home/bmiller/git/node-error-classes/lib/RequiredParameter.js:12:1)
-        at multiplyNumbers (/home/bmiller/git/node-error-classes/example/requiredParam.js:13:13)
-&nbsp;
-     *```
      *
-     * @method Errors.RequiredParameter.setMessage
-     * @param  {Any} parameterName name of parameter
-     * @param  {Any} [scope]     optional value where the parameter came from like an object or array
+     * ```
+     *
+     * @method Errors.InvalidMethod.setMessage
+     * @param  {String} methodName      method name
+     * @param  {Any} method  expected method
+     * @param  {Any} [scope] scope in which the invalid method is expected
      * @returns {String}    compiled error message
      */
-    setMessage(parameterName,scope){
-        this.name='RequiredParameter';
-        this.message=`Expects ${util.inspect(parameterName,{depth:5,colors:true})} to be defined
-        ${(scope)?
-            `Scope : ${util.inspect(scope,{depth:5,colors:true})}`:
-            ''
-        }`;
+    setMessage(methodName, method, scope){
+        this.name = 'InvalidMethod';
+        this.message = `Expects ${util.inspect(methodName,{depth:5, colors:true})} to be Function but got ${util.inspect(method,{depth:5, colors:true})}
+            ${(scope)?
+<span class="branch-0 cbranch-no" title="branch not covered" >                `Scope : ${util.inspect(scope,{depth:5,colors:true})}`:</span>
+                ''
+            }`;
         return this.message;
     }
 }
 &nbsp;
-module.exports = RequiredParameter;
+module.exports = InvalidMethod;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->

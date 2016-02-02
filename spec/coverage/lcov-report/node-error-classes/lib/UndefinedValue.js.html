@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for node-error-classes/lib/RequiredParameter.js</title>
+    <title>Code coverage report for node-error-classes/lib/UndefinedValue.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,7 +16,7 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">node-error-classes/lib/</a> RequiredParameter.js
+      <a href="../../index.html">all files</a> / <a href="index.html">node-error-classes/lib/</a> UndefinedValue.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
@@ -25,9 +25,9 @@
         <span class='fraction'>5/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -101,8 +101,9 @@
 56
 57
 58
-59</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+59
+60
+61</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,75 +149,80 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
-&nbsp;
 const util = require('util');
 &nbsp;
 /**
+ * Error for undefined values
  *
- * error for required params that are not set or passed
- *
-* @extends Error
-* @class Errors.RequiredParameter
+ * @extends Error
+ * @class Errors.UndefinedValue
  * */
-class RequiredParameter extends Error {
+class UndefinedValue extends Error{
     /**
-     * @example
-     *
-     * let test={a:1,b:0};
-     *
-     * if(!test.c){
-     *     err=new Errors.RequiredParameter;
-     *     err.setMessage(
-     *         'c',
-     *         test
-     *     );
-     *     throw err;
-     * }
-     *
-     * @example
-     *
-     * ```sh
-     *
-     * git/node-error-classes/example/requiredParam.js:17
-        throw err;
-        ^
+   * @example
+   *
+   *
+    const Errors = require('node-error-classes');
 &nbsp;
-        RequiredParameter: Expects 'numberOne' to be defined
+    const user={
+       name:'bob'
+    }
 &nbsp;
-        at RequiredParameter (/home/bmiller/git/node-error-classes/lib/RequiredParameter.js:12:1)
-        at multiplyNumbers (/home/bmiller/git/node-error-classes/example/requiredParam.js:13:13)
+    if(!user.age){
+      const err = new Errors.UndefinedValue;
+      err.setMessage(
+          'age',
+          user.age,
+          user
+      );
+      throw err;
+    }
+   *
+   * @example
+   *
+   * ```sh
+   *
+    git/node-error-classes/example/undefinedValue.js:14
+       throw err;
+       ^
 &nbsp;
-     *```
-     *
-     * @method Errors.RequiredParameter.setMessage
-     * @param  {Any} parameterName name of parameter
-     * @param  {Any} [scope]     optional value where the parameter came from like an object or array
-     * @returns {String}    compiled error message
-     */
-    setMessage(parameterName,scope){
-        this.name='RequiredParameter';
-        this.message=`Expects ${util.inspect(parameterName,{depth:5,colors:true})} to be defined
+    Undefined: 'string'
+&nbsp;
+   * ```
+   *
+   * @method Errors.UndefinedValue.setMessage
+   * @param  {String} variableName      varible name
+   * @param  {Any} variable      varible
+   * @param  {Any} [scope]      scope in which the variable should exist
+   * @returns {String}    compiled error message
+   */
+    setMessage(variableName,variable,scope){
+        this.name = 'UndefinedValue';
+        this.message = `Expects ${util.inspect(variableName, {colors: true})} to be defined but got ${util.inspect(variable, {colors: true})}
         ${(scope)?
-            `Scope : ${util.inspect(scope,{depth:5,colors:true})}`:
+<span class="branch-0 cbranch-no" title="branch not covered" >            `Scope : ${util.inspect(scope,{depth:5,colors:true})}`:</span>
             ''
         }`;
         return this.message;
     }
 }
 &nbsp;
-module.exports = RequiredParameter;
+module.exports = UndefinedValue;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
