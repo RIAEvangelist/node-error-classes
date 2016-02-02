@@ -19,9 +19,6 @@ Errors=require('node-error-classes');
 ```
 
 * [Errors](#Errors) : <code>object</code>
-    * [.BoilerPlate](#Errors.BoilerPlate) ⇐ <code>Error</code>
-        * [new BoilerPlate()](#new_Errors.BoilerPlate_new)
-        * [.setMessage(param1, param2, [scope])](#Errors.BoilerPlate.setMessage) ⇒ <code>String</code>
     * [.Immutable](#Errors.Immutable) ⇐ <code>Error</code>
         * [new Immutable()](#new_Errors.Immutable_new)
         * [.setMessage(varaibleName, scope)](#Errors.Immutable.setMessage) ⇒ <code>String</code>
@@ -44,39 +41,6 @@ Errors=require('node-error-classes');
         * [new UndefinedValue()](#new_Errors.UndefinedValue_new)
         * [.setMessage(variableName, variable, [scope])](#Errors.UndefinedValue.setMessage) ⇒ <code>String</code>
 
-<a name="Errors.BoilerPlate"></a>
-### Errors.BoilerPlate ⇐ <code>Error</code>
-**Kind**: static class of <code>[Errors](#Errors)</code>  
-**Extends:** <code>Error</code>  
-
-* [.BoilerPlate](#Errors.BoilerPlate) ⇐ <code>Error</code>
-    * [new BoilerPlate()](#new_Errors.BoilerPlate_new)
-    * [.setMessage(param1, param2, [scope])](#Errors.BoilerPlate.setMessage) ⇒ <code>String</code>
-
-<a name="new_Errors.BoilerPlate_new"></a>
-#### new BoilerPlate()
-Error BoilerPlate for whatever you want!
-
-<a name="Errors.BoilerPlate.setMessage"></a>
-#### BoilerPlate.setMessage(param1, param2, [scope]) ⇒ <code>String</code>
-**Kind**: static method of <code>[BoilerPlate](#Errors.BoilerPlate)</code>  
-**Returns**: <code>String</code> - compiled error message  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| param1 | <code>String</code> | what param1 is |
-| param2 | <code>Any</code> | what param2 is |
-| [scope] | <code>Any</code> | scope in which the error is happening |
-
-**Example**  
-```javascript
-put your example here
-```
-**Example**  
-```sh
-
-        paste error from console here as example
-```
 <a name="Errors.Immutable"></a>
 ### Errors.Immutable ⇐ <code>Error</code>
 **Kind**: static class of <code>[Errors](#Errors)</code>  
