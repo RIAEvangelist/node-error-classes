@@ -33,7 +33,7 @@
     "codacy-coverage": "^1.1.3",
     "istanbul": "^0.4.2",
     "jasmine": "^2.4.1",
-    "jsdoc-to-markdown": "^1.3.3",
+    "jsdoc-to-markdown": "*",
     "node-http-server": "^4.5.2",
     "node-ipc" : "*"
   }
