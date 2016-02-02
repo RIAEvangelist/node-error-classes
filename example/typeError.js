@@ -9,22 +9,22 @@ function multiplyNumbers(numberOne,numberTwo){
     numberOne=Number(numberOne);
     numberTwo=Number(numberTwo);
 
-    if(numberOne>5){
+    if(!numberOne){
         err=new Errors.Type;
         err.setMessage(
             'numberOne',
-            'String',
+            'Number',
             numberOne
         );
         throw err;
     }
 
-    if(numberTwo>10){
-        err=new Errors.InvalidParameter;
+    if(!numberTwo){
+        err=new Errors.Type;
         err.setMessage(
             'numberTwo',
-            'String',
-            numberOne
+            'Number',
+            numberTwo
         );
         throw err;
     }
