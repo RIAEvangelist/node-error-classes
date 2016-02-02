@@ -28,6 +28,21 @@ function describeErrorsTests(){
         'should throw SocketUnavailable Error',
         badSocket
     );
+
+    it(
+        'should throw Immutable Error',
+        immutable
+    );
+
+    it(
+        'should throw invalid method Error',
+        invalidMethod
+    );
+
+    it(
+        'should throw undefined value Error',
+        undefinedValue
+    );
 }
 
 function requiredParam(done){
@@ -159,4 +174,61 @@ function badSocket(done){
             );
         }
     );
+}
+
+function immutable(done){
+    const err=new Errors.Immutable;
+    let error=null;
+
+    err.setMessage(
+        'testError'
+    );
+
+    try{
+        throw err;
+    }catch(err){
+        error=err;
+    }
+
+    expect(error.name).toBe('Immutable');
+
+    done();
+}
+
+function invalidMethod(done){
+    const err=new Errors.InvalidMethod;
+    let error=null;
+
+    err.setMessage(
+        'testError'
+    );
+
+    try{
+        throw err;
+    }catch(err){
+        error=err;
+    }
+
+    expect(error.name).toBe('InvalidMethod');
+
+    done();
+}
+
+function undefinedValue(done){
+    const err=new Errors.UndefinedValue;
+    let error=null;
+
+    err.setMessage(
+        'testError'
+    );
+
+    try{
+        throw err;
+    }catch(err){
+        error=err;
+    }
+
+    expect(error.name).toBe('UndefinedValue');
+
+    done();
 }

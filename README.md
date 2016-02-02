@@ -158,8 +158,8 @@ const Errors = require('node-error-classes');
                    throw err;
                    ^
 
-    Immutable: 'name' is Immutable and may not be modified. : User { age: 42, name: [Getter/Setter] }.
-            Variable names here must be unique
+    Immutable: 'name' is Immutable and may not be modified.
+            User { age: 42, name: [Getter/Setter] }
         at Immutable (/home/bmiller/git/node-error-classes/lib/Immutable.js:10:1)
         at User.setName [as name] (/home/bmiller/git/node-error-classes/example/immutable.js:34:26)
 ```
