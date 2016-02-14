@@ -1,0 +1,27 @@
+{
+  "name": "node-error-classes",
+  "description": "Custom error classes for javascript",
+  "main": "Errors.js",
+  "authors": [
+    "Brandon Nozaki Miller"
+  ],
+  "license": "DBAD",
+  "keywords": [
+    "node",
+    "error",
+    "throw",
+    "custom"
+  ],
+  "homepage": "https://github.com/RIAEvangelist/node-error-classes",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
